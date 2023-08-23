@@ -4,19 +4,24 @@
 	
   	<section class="content">
     <div class="container-fluid">
-      	<div class="row pt-3">
-          	<div class="col-md-12">
-          		<!-- <h2>{{$event['eventname']}}</h2> -->
-          	</div>
+        <div class="row pt-3">
+            <div class="col-md-6">
+                <h2>{{$event['eventname']}}</h2>
+            </div>
+            <div class="col-md-6 text-right">
+                <button class="btn btn-success">REFRESH ALL</button>
+                <button class="btn btn-danger ml-2">END EVENT</button>
+            </div>
         </div>
+        
         <hr>
         <div class="row">
         	<div class="col-md-6 border">
 				<div class="row form-group">
-					<div class="col-md-12" style="height: 14em">
-						Live Video
-					</div>
-				</div>
+                    <div class="col-md-12" style="height: 30em">
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/D36NcdULu_U&pp=ygUSc2Fib25nIHNob3J0IHZpZGVv" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
 				<div class="row">
 					<div class="col-md-12 table-responsive" style="height: 10em">
 						<table class="table table-sm text-xs">
@@ -36,7 +41,7 @@
 			<style>
 			.container {
 				width: 100%;
-				height: 200; /* Adjust the height as needed */
+				height: 100; /* Adjust the height as needed */
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -47,10 +52,11 @@
 				grid-template-columns: repeat(10, 1fr);
 				grid-template-rows: repeat(10, 1fr);
 				gap: 2px;
-				width: 80%; /* Adjust the width as a percentage of the container */
+				width: 100%; /* Adjust the width as a percentage of the container */
 				max-width: 400px; /* Optional: Add a maximum width to prevent the grid from getting too wide */
 				height: 50%; /* Adjust the height as a percentage of the container */
-				max-height: 300px; /* Optional: Add a maximum height to prevent the grid from getting too tall */
+				max-height: 180px; 
+                /* Optional: Add a maximum height to prevent the grid from getting too tall */
 				overflow: auto;
 			}
 
@@ -76,7 +82,8 @@
   			}
 			</style>
 			<div class="col-md-6">
-				<div class="row form-group">
+                Controls
+				<div class="row form-group mb-0">
 					<div class="col-md-6">
 						
 						@php
@@ -95,16 +102,35 @@
 							}
 						@endphp
 						
-						<label for="">Winning History</label>
-						<div class="container mb-2">
-							<div class="grid-container">
-								@foreach ($dummyData as $winning)
-								<div class="circular-cell {{ strtolower($winning['color']) }}">
-									{{ $winning['games_won'] }}
-								</div>
-								@endforeach
-							</div>
-						</div>
+						<div class="card border-primary">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title font-weight-bold">WINNING HISTORY</h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <hr class="my-3"> <!-- Line Divider -->
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="container mb-2">
+                                            <div class="grid-container">
+                                                @foreach ($dummyData as $winning)
+                                                <div class="circular-cell {{ strtolower($winning['color']) }}">
+                                                    {{ $winning['games_won'] }}
+                                                </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
 						<!-- <table class="table trend-table">
 							<tbody>
 								<tr>
@@ -117,20 +143,171 @@
 					</div>
 					<div class="col-md-6">
 						<div class="card border-primary">
-							<div class="card-body">
-								<label class="mb-2">JUMP TO FIGHT</label>
-								<div class="input-group mb-3">
-									<input type="number" id="event_fightnum" class="form-control form-control-sm" value="0">
-									<div class="input-group-append">
-										<button class="btn btn-primary btn-sm text-sm">
-										FIGHT
-										</button>
-									</div>
-								</div>
-							</div>
-						</div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title font-weight-bold">JUMP TO FIGHT</h5>
+                                    </div>
+                                </div>
+                                <div class="row  border-top mt-3 pt-3">
+                                    <div class="col">
+                                        <div class="input-group mb-2">
+                                            <input type="number" id="event_fightnum" class="form-control form-control-sm" value="0">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary btn-sm text-sm">FIGHT</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						<div class="card border-primary">
+                            <div class="card-body">
+                                <div class="row"> 
+                                    <div class="col">
+                                        <h5 class="card-title font-weight-bold">BET STATUS</h5>
+                                    </div>
+                                </div>
+                                <div class="row border-top mt-3 pt-3">
+                                    <div class="col">
+                                        <button class="btn btn-success btn-block">OPEN BET</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 					</div>
 				</div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card border-primary">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title font-weight-bold">DECLARE WINNER</h5>
+                                    </div>
+                                    <div class="col-auto d-flex align-items-center">
+                                        <hr class="flex-grow-1 my-0 mx-2"> <!-- Divider Line -->
+                                        <h5 class="card-title mb-0 font-weight-bold">FIGHT #4</h5>
+                                    </div>
+                                </div>
+                                <hr class="my-3"> <!-- Line Divider -->
+                                <div class="row mt-3 justify-content-center ">
+                                    <div class="col-6-max mx-2">
+                                        <button class="btn btn-danger btn-block w-100 max-w-xs mb-2">DECLARE <br> MERON</button>
+                                    </div>
+                                    <div class="col-6-max mx-2">
+                                        <button class="btn btn-primary btn-block w-100 max-w-xs mb-2">DECLARE <br> WALA</button>
+                                    </div>
+                                    <div class="col-6-max mx-2">
+                                        <button class="btn btn-warning btn-block w-100 max-w-xs mb-2">DECLARE <br> DRAW</button>
+                                    </div>
+                                    <div class="col-6-max mx-2">
+                                        <button class="btn btn-secondary btn-block w-100 max-w-xs mb-2">DECLARE <br> CANCEL</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card border-primary">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title font-weight-bold">BETTING INFO</h5>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        <div class="bg-secondary text-white text-center pt-2">
+                                            <label for="">TOTAL BETS</label>
+                                        </div>
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr class="text-center">
+                                                    <th class="bg-danger">MERON</th>
+                                                    <th class="bg-primary">WALA</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Data 1</td>
+                                                    <td>Data 2</td>
+                                                </tr>
+                                                <!-- Add more rows here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="bg-success text-white text-center pt-2">
+                                            <label for="">PAYOUT</label>
+                                        </div>
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr class="text-center">
+                                                    <th class="bg-danger">MERON</th>
+                                                    <th class="bg-primary">WALA</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Data 1</td>
+                                                    <td>Data 2</td>
+                                                </tr>
+                                                <!-- Add more rows here -->
+                                            </tbody>
+                                        </table>
+                                    </div>                              
+                                </div>
+                                <div class="row ">
+                                    <div class="col">
+                                        <div class="bg-info text-white text-center pt-2">
+                                            <label for="">ACTUAL BETS</label>
+                                        </div>
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr class="text-center">
+                                                    <th class="bg-danger">MERON</th>
+                                                    <th class="bg-primary">WALA</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Data 1</td>
+                                                    <td>Data 2</td>
+                                                </tr>
+                                                <!-- Add more rows here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col">
+                                        <div class="bg-warning text-white text-center pt-2">
+                                            <label for="">GHOST BETS</label>
+                                        </div>
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr class="text-center">
+                                                    <th class="bg-danger">MERON</th>
+                                                    <th class="bg-primary">WALA</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Data 1</td>
+                                                    <td>Data 2</td>
+                                                </tr>
+                                                <!-- Add more rows here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
 			</div>
         </div>
     </div>
